@@ -1,0 +1,37 @@
+.options, .display{
+    max-height: 60%;
+    max-width: 50%;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    align-items: end;
+}
+.options{
+    max-width: 20%;
+    margin-left: 3%;
+    background-color: gainsboro;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+#buttons{
+    border: 2px solid black;
+    min-width: 40%;
+    text-align: center;
+    padding: 2%;
+    border-radius: 5px;
+}
+.range{
+    text-align: center;
+    border: 0px;
+}
+.heights{
+    flex: 1;
+    border: 2px solid red;
+}
