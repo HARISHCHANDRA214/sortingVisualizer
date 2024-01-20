@@ -168,3 +168,57 @@ async function mergeSort(arr,l, r){
 	await mergeSort(arr,m+1,r);
 	await merge(arr,l,m,r);
 }
+
+async function partition(arr, low, high) {
+	let pivot = arr[high];
+	let i = low - 1;
+	document.getElementById(high).style.background="blue";
+	for (let j = low; j <= high - 1; j++) {
+		await wait(delay);
+		if (arr[j] < pivot) {
+			i++;
+			document.getElementById(j).style.background="yellow";
+			await wait(delay);
+			[arr[i], arr[j]] = [arr[j], arr[i]];
+			document.getElementById(i).style.height=arr[i]+"%";
+			document.getElementById(j).style.height=arr[j]+"%";
+			if(i!=j){
+				document.getElementById(i).style.background="yellow";
+				document.getElementById(j).style.background="pink";
+			}
+		}else{
+			document.getElementById(j).style.background="pink";
+		}
+	}
+	
+	[arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
+	document.getElementById(i+1).style.height=arr[i+1]+"%";
+	document.getElementById(high).style.height=arr[high]+"%";
+	document.getElementById(i+1).style.background="green";
+	for(let k=0;k<arr.length;k++){
+		if(document.getElementById(k).style.background!="green"){
+			document.getElementById(k).style.background="black";
+		}
+	}
+	return i + 1;
+}
+
+// The main function that implements QuickSort
+async function quickSort(arr, low, high) {
+	if (low < high) {
+		// pi is the partitioning index, arr[pi] is now at the right place
+		let pi = await partition(arr, low, high);
+
+		// Separately sort elements before partition and after partition
+		await quickSort(arr, low, pi - 1);
+		await quickSort(arr, pi + 1, high);
+	}else if(low==high){
+		document.getElementById(low).style.background="green";
+	}
+	
+}
+// Function call
+// let arr=[7,5,4,1,3,2,6,8,9,10];
+document.querySelector(".quickSort").addEventListener("click", ()=>{
+	let response=quickSort(arr, 0, arr.length - 1);
+})
